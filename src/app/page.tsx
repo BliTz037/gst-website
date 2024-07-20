@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -48,7 +49,7 @@ export default function Home() {
         </section>
         <div className="container min-h-screen pt-6 lg:pt-10">
           <div className=" flex justify-center items-center">
-            <Card className="w-[380px]">
+            <Card>
               <CardHeader>
                 <CardTitle>Track a server</CardTitle>
                 <CardDescription>
@@ -56,21 +57,26 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="flex flex-row space-x-2">
                   <Input value="mc.hypixel.net" placeholder="Server address" />
                   <Select>
                     <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Theme" />
+                      <SelectValue placeholder="Server Type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="light">Light</SelectItem>
-                      <SelectItem value="dark">Dark</SelectItem>
-                      <SelectItem value="system">System</SelectItem>
+                      <SelectItem value="mc">Minecraft Java Edition</SelectItem>
+                      <SelectItem value="mcbedrock">
+                        Minecraft Bedrock Edition
+                      </SelectItem>
+                      <SelectItem value="source">Source</SelectItem>
+                      <SelectItem value="fivem">FiveM / RedM</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button>Track it</Button>
                 </div>
               </CardContent>
+              <CardFooter className="justify-end">
+                <Button>Track it</Button>
+              </CardFooter>
             </Card>
           </div>
         </div>
