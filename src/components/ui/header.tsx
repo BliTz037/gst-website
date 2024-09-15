@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ServerIcon } from "./icons/ServerIcon";
+import { ServerIcon } from "@/components/icons/ServerIcon";
 
 export function Header() {
   return (
