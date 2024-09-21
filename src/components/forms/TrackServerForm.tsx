@@ -15,7 +15,10 @@ import {
 } from "../ui/select";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Dispatch, SetStateAction } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormField, FormItem, FormLabel } from "../ui/form";
 
 const serverTypes: any[] = [
   { value: "mc", label: "Minecraft Java Edition" },
@@ -24,18 +27,29 @@ const serverTypes: any[] = [
   { value: "fivem", label: "FiveM / RedM" },
 ];
 
-export const TrackServerForm = ({
-  serverAddress,
-  setServerAddress,
+const formSchema = z.object({
+  serverAddress: z.string(),
+  serverType: z.string(),
+});
 
-  serverType,
-  setServerType,
-}: {
-  serverAddress: string;
-  setServerAddress: Dispatch<SetStateAction<string>>;
-  serverType: string;
-  setServerType: Dispatch<SetStateAction<string>>;
-}) => {
+function onSubmit(values: z.infer<typeof formSchema>) {
+  console.log(values);
+
+  // Set Skeleton
+
+  // Fetch data
+
+  // Set data
+}
+
+export const TrackServerForm = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      serverAddress: "mc.hypixel.net",
+      serverType: "mc",
+    },
+  });
   return (
     <Card className="w-full max-w-2xl">
       <CardHeader>
@@ -45,33 +59,56 @@ export const TrackServerForm = ({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap justify-center items-center lg:space-x-2">
-          <div className="min-w-[12rem]">
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Server Type" />
-              </SelectTrigger>
-              <SelectContent>
-                {serverTypes.map((type) => (
-                  <SelectItem key={type.value} value={type.value}>
-                    {type.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grow">
-            <Input
-              className=""
-              value={serverAddress}
-              placeholder="Server address"
-              onChange={(e) => setServerAddress(e.target.value)}
-            />
-          </div>
-        </div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} id="trackServerForm">
+            <div className="flex flex-wrap justify-center items-center lg:space-x-2">
+              <div className="min-w-[12rem]">
+                <FormField
+                  control={form.control}
+                  name="serverType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Server type</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        name="serverType"
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {serverTypes.map((type) => (
+                            <SelectItem key={type.value} value={type.value}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grow">
+                <FormField
+                  control={form.control}
+                  name="serverAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <Input placeholder="Server address" {...field} />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </form>
+        </Form>
       </CardContent>
       <CardFooter className="justify-end">
-        <Button>Track it</Button>
+        <Button type="submit" form="trackServerForm">
+          Track it
+        </Button>
       </CardFooter>
     </Card>
   );

@@ -50,12 +50,7 @@ export default function Home() {
         </section>
         <div className="container pt-6 lg:pt-10">
           <div className="flex justify-center items-center">
-            <TrackServerForm
-              serverAddress={serverAddress}
-              setServerAddress={setServerAddress}
-              serverType={serverType}
-              setServerType={setServerType}
-            />
+            <TrackServerForm/>
           </div>
         </div>
         <div className="container pt-6 lg:pt-8">
