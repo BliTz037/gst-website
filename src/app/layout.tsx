@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { DATA } from "@/data/data";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Game Server Tracker",
+  title: DATA.title,
   description:
-    "A simplest way to track your game server (Minecraft, Source, GTA V).",
+    DATA.description,
   authors: {
     name: "Tom Rives",
     url: "https://tomrives.me",
