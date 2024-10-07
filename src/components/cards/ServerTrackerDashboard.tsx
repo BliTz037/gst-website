@@ -67,6 +67,32 @@ const mcServer = (data: any) => (
   </>
 );
 
+const mcBedrockServer = (data: any) => (
+  <>
+    <ServerTypeCard serverType={"mcbedrock"} />
+    <ServerStatusCard serverStatus={{ isOnline: data.online, last: "N/A" }} />
+    <PlayersOnlineCard
+      playersOnline={
+        data?.players
+          ? { online: data?.players?.online, max: data?.players?.max }
+          : undefined
+      }
+    />
+    <ServerVersionCard
+      serverVersion={
+        data?.version
+          ? {
+              version: data?.version?.name,
+              os: "",
+              protocol: data?.version?.protocol,
+            }
+          : undefined
+      }
+    />
+    <PlayerListCard />
+  </>
+);
+
 const fivemServer = (data: any) => (
   <>
     <ServerTypeCard serverType={"fivem"} />
@@ -179,7 +205,7 @@ export function ServerTrackerDashboard({
       case "mc":
         return mcServer(data);
       case "mcbedrock":
-        return mcServer(data);
+        return mcBedrockServer(data);
       case "fivem":
         return fivemServer(data);
       case "source":

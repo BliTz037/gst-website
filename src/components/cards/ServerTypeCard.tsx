@@ -6,7 +6,7 @@ import { FiveMIcon } from "../icons/FiveMIcon";
 
 const serverTypeIcons: { [key: string]: () => JSX.Element } = {
   'mc': () => <MinecraftIcon width={64} height={64} />,
-  'mcbedrock': () => <Image src="/bedrock.webp" alt="Bedrock" width={96} height={96} />,
+  'mcbedrock': () => <Image src="/bedrock.webp" alt="Bedrock" width={64} height={64} />,
   'source': () => <SourceIcon width={64} height={64} color="#f0db4f" />,
   'fivem': () => <FiveMIcon width={64} height={64} color="white" />,
 };
