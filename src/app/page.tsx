@@ -7,6 +7,7 @@ import { TrackServerForm } from "@/components/forms/TrackServerForm";
 import { Footer } from "@/components/ui/footer";
 import { ServerTrackerDashboard } from "@/components/cards/ServerTrackerDashboard";
 import React from "react";
+import { DATA } from "@/data/data";
 
 export default function Home() {
   const [serverAddress, setServerAddress] = useState("mc.hypixel.net");
@@ -29,14 +30,13 @@ export default function Home() {
                 />
               </div>
               <h2 className="md:text-5xl text-3xl font-bold p-2">
-                Game Server Tracker
+                {DATA.title}
               </h2>
               <h2 className="text-base font-semibold leading-7 text-primary">
-                A simplest way to track your game server
+                {DATA.subtitle}
               </h2>
               <p className="mt-6 text-lg leading-8">
-                GST gives server information about your favorite game servers
-                (Minecraft, Source, GTA V).
+                {DATA.description}
               </p>
             </div>
           </div>
