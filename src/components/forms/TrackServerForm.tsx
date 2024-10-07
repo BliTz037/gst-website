@@ -32,17 +32,19 @@ const formSchema = z.object({
   serverType: z.string(),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
-
-  // Set Skeleton
-
-  // Fetch data
-
-  // Set data
-}
-
-export const TrackServerForm = () => {
+export const TrackServerForm = ({
+  serverAddress,
+  serverType,
+  setServerAddress,
+  setServerType,
+  setData,
+}: {
+  serverAddress: string;
+  serverType: string;
+  setServerAddress: any;
+  setServerType: any;
+  setData: any;
+}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,6 +52,15 @@ export const TrackServerForm = () => {
       serverType: "mc",
     },
   });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    if (serverAddress !== values.serverAddress || serverType !== values.serverType) {
+      setData(null);
+    }
+    setServerAddress(values.serverAddress);
+    setServerType(values.serverType);
+  };
+
   return (
     <Card className="w-full max-w-2xl">
       <CardHeader>

@@ -3,22 +3,15 @@
 import { Header } from "@/components/ui/header";
 import Image from "next/image";
 import { useState } from "react";
-import { Separator } from "@/components/ui/separator";
-import { fetchServerData } from "@/lib/api";
 import { TrackServerForm } from "@/components/forms/TrackServerForm";
 import { Footer } from "@/components/ui/footer";
-import { ServerStatusCard } from "@/components/cards/ServerStatusCard";
-import { PlayerListCard } from "@/components/cards/PlayerListCard";
-import { PlayersOnlineCard } from "@/components/cards/PlayersOnlineCard";
-import { ServerTypeCard } from "@/components/cards/ServerTypeCard";
-import { ServerVersionCard } from "@/components/cards/ServerVersionCard";
-import { ServerMapCard } from "@/components/cards/ServerMapCard";
+import { ServerTrackerDashboard } from "@/components/cards/ServerTrackerDashboard";
+import React from "react";
 
 export default function Home() {
   const [serverAddress, setServerAddress] = useState("mc.hypixel.net");
   const [serverType, setServerType] = useState("mc");
-
-  const data = fetchServerData(serverAddress, serverType);
+  const [data, setData] = useState(null);
 
   return (
     <>
@@ -50,28 +43,21 @@ export default function Home() {
         </section>
         <div className="container pt-6 lg:pt-10">
           <div className="flex justify-center items-center">
-            <TrackServerForm/>
+            <TrackServerForm
+              serverAddress={serverAddress}
+              serverType={serverType}
+              setServerAddress={setServerAddress}
+              setServerType={setServerType}
+              setData={setData}
+            />
           </div>
         </div>
-        <div className="container pt-6 lg:pt-8">
-          <Separator />
-          <div className="p-2">
-            <h2 className="text-3xl font-bold text-center font-bold p-2">
-              Hypixel
-            </h2>
-            <h2 className="text-base text-center text-primary">
-              mc.hypixel.net
-            </h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 md:gap-3 lg:grid-cols-4">
-            <ServerTypeCard />
-            <ServerStatusCard serverStatus={{ isOnline: true, last: "N/A" }} />
-            <PlayersOnlineCard />
-            <ServerVersionCard />
-            <ServerMapCard />
-            <PlayerListCard />
-          </div>
-        </div>
+        <ServerTrackerDashboard
+          serverAddress={serverAddress}
+          serverType={serverType}
+          setData={setData}
+          data={data}
+        />
       </main>
       <Footer />
     </>

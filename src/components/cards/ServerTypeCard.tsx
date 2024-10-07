@@ -4,14 +4,21 @@ import { MinecraftIcon } from "../icons/MinecraftIcon";
 import { SourceIcon } from "../icons/SourceIcon";
 import { FiveMIcon } from "../icons/FiveMIcon";
 
-const serverTypeIcons = {
-  mc: () => <MinecraftIcon width={64} height={64} />,
-  mcbedrock: () => <Image src="/bedrock.webp" alt="Bedrock" width={96} height={96} />,
-  source: () => <SourceIcon width={64} height={64} color="#f0db4f" />,
-  fivem: () => <FiveMIcon width={64} height={64} color="white" />,
+const serverTypeIcons: { [key: string]: () => JSX.Element } = {
+  'mc': () => <MinecraftIcon width={64} height={64} />,
+  'mcbedrock': () => <Image src="/bedrock.webp" alt="Bedrock" width={96} height={96} />,
+  'source': () => <SourceIcon width={64} height={64} color="#f0db4f" />,
+  'fivem': () => <FiveMIcon width={64} height={64} color="white" />,
 };
 
-export const ServerTypeCard = () => {
+const serverTypeName: { [key: string]: () => string } = {
+  'mc': () => "Minecraft Java Edition",
+  'mcbedrock': () => "Minecraft Bedrock Edition",
+  'source': () => "Source",
+  'fivem': () => "FiveM / RedM",
+};
+
+export const ServerTypeCard = ({serverType}: {serverType: string}) => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -19,10 +26,10 @@ export const ServerTypeCard = () => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col items-center space-y-2">
-          {serverTypeIcons['mc']()}
+          {serverTypeIcons[serverType]()}
         </div>
         <div className="text-xl font-bold text-center">
-          Minecraft Java Edition
+          {serverTypeName[serverType]()}
         </div>
       </CardContent>
     </Card>
