@@ -73,23 +73,20 @@ const fivemServer = (data: any) => (
     <ServerStatusCard serverStatus={{ isOnline: data.online, last: "N/A" }} />
     <PlayersOnlineCard
       playersOnline={
-        data?.players
-          ? { online: data?.players?.online, max: data?.players?.max }
+        data?.clients
+          ? { online: data?.clients, max: data?.sv_maxclients }
           : undefined
       }
     />
-    <ServerVersionCard
-      serverVersion={
-        data?.version
+    <ServerMapCard
+      serverMap={
+        data?.mapname
           ? {
-              version: data?.version,
-              os: data?.OS,
-              protocol: data?.protocol,
+              serverMap: data?.mapname,
             }
           : undefined
       }
     />
-    <ServerMapCard />
     <PlayerListCard />
   </>
 );
@@ -146,7 +143,7 @@ export function ServerTrackerDashboard({
   serverAddress,
   serverType,
   setData,
-  data
+  data,
 }: ServerTrackerDashboardProps) {
   const [loading, setLoading] = useState(true);
 
