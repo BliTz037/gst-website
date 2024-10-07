@@ -24,15 +24,11 @@ export const PlayerListCard = () => {
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell className="font-medium">BliTz_37</TableCell>
+              <TableCell className="font-medium">Soon</TableCell>
               <TableCell className="font-medium">1 hour</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="font-medium">BliTz_37</TableCell>
-              <TableCell className="font-medium">1 hour</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">BliTz_37</TableCell>
+              <TableCell className="font-medium">Soon</TableCell>
               <TableCell className="font-medium">1 hour</TableCell>
             </TableRow>
           </TableBody>
