@@ -63,7 +63,6 @@ const mcServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -89,7 +88,6 @@ const mcBedrockServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -113,7 +111,6 @@ const fivemServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -128,15 +125,15 @@ const fivemCfxServer = (data: any) => (
           : undefined
       }
     />
-        <ServerMapCard
-          serverMap={
-            data?.Data.mapname
-              ? {
-                  serverMap: data?.Data.mapname,
-                }
-              : undefined
-          }
-        />
+    <ServerMapCard
+      serverMap={
+        data?.Data.mapname
+          ? {
+              serverMap: data?.Data.mapname,
+            }
+          : undefined
+      }
+    />
     <ServerVersionCard
       serverVersion={
         data?.Data.server
@@ -157,7 +154,7 @@ const fivemCfxServer = (data: any) => (
             }))
           : undefined
       }
-     />
+    />
   </>
 );
 
@@ -192,7 +189,23 @@ const sourceServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard players={undefined} />
+    <PlayerListCard
+      players={
+        data?.players?.list
+          ? data?.players.list.map((player: any) => {
+              let connectedSince = null;
+              if (player.timeOnline) {
+                const date = new Date(player?.timeOnline.start);
+                connectedSince = `${date.toLocaleString()}`;
+              }
+              return {
+                name: player.name,
+                connectedSince: connectedSince ?? "N/A",
+              };
+            })
+          : undefined
+      }
+    />
   </>
 );
 
