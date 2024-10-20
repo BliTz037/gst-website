@@ -11,12 +11,9 @@ export function Header() {
         <h1 className="font-heading text-xl md:text-2xl font-bold">Game Server Tracker</h1>
       </div>
       <div>
-        {/* <Link href="#">
+        <Link href={DATA.swagger}>
           <Button variant="link">Swagger</Button>
         </Link>
-        <Link href="#">
-          <Button variant="link">Contact</Button>
-        </Link> */}
         <Link href={DATA.links.github}>
           <Button variant="link">Github</Button>
         </Link>
