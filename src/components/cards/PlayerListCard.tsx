@@ -30,12 +30,10 @@ export const PlayerListCard = ({
             </TableHeader>
             <TableBody>
               {players && players.length >= 0 ? (
-                players.map((player) => (
-                  <TableRow>
-                    <TableCell key={player.name}>{player.name}</TableCell>
-                    <TableCell key={player.connectedSince}>
-                      {player.connectedSince}
-                    </TableCell>
+                players.map((player, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{player.name}</TableCell>
+                    <TableCell>{player.connectedSince}</TableCell>
                   </TableRow>
                 ))
               ) : (
