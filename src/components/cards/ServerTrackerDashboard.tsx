@@ -63,7 +63,7 @@ const mcServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard />
+    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -89,7 +89,7 @@ const mcBedrockServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard />
+    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -113,7 +113,7 @@ const fivemServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard />
+    <PlayerListCard players={undefined} />
   </>
 );
 
@@ -121,6 +121,22 @@ const fivemCfxServer = (data: any) => (
   <>
     <ServerTypeCard serverType={"fivem"} />
     <ServerStatusCard serverStatus={{ isOnline: data.online, last: "N/A" }} />
+    <PlayersOnlineCard
+      playersOnline={
+        data?.Data
+          ? { online: data?.Data.clients, max: data?.Data.sv_maxclients }
+          : undefined
+      }
+    />
+        <ServerMapCard
+          serverMap={
+            data?.Data.mapname
+              ? {
+                  serverMap: data?.Data.mapname,
+                }
+              : undefined
+          }
+        />
     <ServerVersionCard
       serverVersion={
         data?.Data.server
@@ -132,23 +148,16 @@ const fivemCfxServer = (data: any) => (
           : undefined
       }
     />
-    <PlayersOnlineCard
-      playersOnline={
-        data?.Data
-          ? { online: data?.Data.clients, max: data?.Data.sv_maxclients }
+    <PlayerListCard
+      players={
+        data?.Data.players
+          ? data?.Data.players.map((player: any) => ({
+              name: player.name,
+              connectedSince: null,
+            }))
           : undefined
       }
-    />
-    <ServerMapCard
-      serverMap={
-        data?.Data.mapname
-          ? {
-              serverMap: data?.Data.mapname,
-            }
-          : undefined
-      }
-    />
-    <PlayerListCard />
+     />
   </>
 );
 
@@ -183,7 +192,7 @@ const sourceServer = (data: any) => (
           : undefined
       }
     />
-    <PlayerListCard />
+    <PlayerListCard players={undefined} />
   </>
 );
 
