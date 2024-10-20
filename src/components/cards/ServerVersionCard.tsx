@@ -17,7 +17,7 @@ export const ServerVersionCard = ({
   }) => {
     return (
       <div className="text-2xl font-bold">
-        {serverVersion?.version} (Protocol {serverVersion?.protocol})
+        {serverVersion?.version} (Protocol {serverVersion?.protocol ?? "N/A"})
         {serverVersion?.os ? ` - ${serverVersion?.os}` : ""}
       </div>
     );

@@ -126,8 +126,8 @@ const fivemCfxServer = (data: any) => (
         data?.Data.server
           ? {
               version: data?.Data.server,
-              os: "",
-              protocol: "",
+              os: undefined,
+              protocol: undefined,
             }
           : undefined
       }
