@@ -117,6 +117,41 @@ const fivemServer = (data: any) => (
   </>
 );
 
+const fivemCfxServer = (data: any) => (
+  <>
+    <ServerTypeCard serverType={"fivem"} />
+    <ServerStatusCard serverStatus={{ isOnline: data.online, last: "N/A" }} />
+    <ServerVersionCard
+      serverVersion={
+        data?.Data.server
+          ? {
+              version: data?.Data.server,
+              os: "",
+              protocol: "",
+            }
+          : undefined
+      }
+    />
+    <PlayersOnlineCard
+      playersOnline={
+        data?.Data
+          ? { online: data?.Data.clients, max: data?.Data.sv_maxclients }
+          : undefined
+      }
+    />
+    <ServerMapCard
+      serverMap={
+        data?.Data.mapname
+          ? {
+              serverMap: data?.Data.mapname,
+            }
+          : undefined
+      }
+    />
+    <PlayerListCard />
+  </>
+);
+
 const sourceServer = (data: any) => (
   <>
     <ServerTypeCard serverType={"source"} />
@@ -190,6 +225,7 @@ export function ServerTrackerDashboard({
         return mcServerSkeleton;
       case "mcbedrock":
         return mcServerSkeleton;
+      case "fivemCfx":
       case "fivem":
         return fivemServerSkeleton;
       case "source":
@@ -206,6 +242,8 @@ export function ServerTrackerDashboard({
         return mcServer(data);
       case "mcbedrock":
         return mcBedrockServer(data);
+      case "fivemCfx":
+        return fivemCfxServer(data);
       case "fivem":
         return fivemServer(data);
       case "source":

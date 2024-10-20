@@ -25,6 +25,7 @@ const serverTypes: any[] = [
   { value: "mcbedrock", label: "Minecraft Bedrock Edition" },
   { value: "source", label: "Source" },
   { value: "fivem", label: "FiveM / RedM" },
+  { value: "fivemCfx", label: "FiveM Cfx code" },
 ];
 
 const formSchema = z.object({

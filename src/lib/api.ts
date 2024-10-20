@@ -5,7 +5,8 @@ const serverTypes: Record<string, string> = {
     "mc": "minecraft",
     "mcbedrock": "minecraft/bedrock",
     "source": "source",
-    "fivem": "fivem"
+    "fivem": "fivem",
+    "fivemCfx": "fivem/cfx"
 };
 
 export async function fetchServerData(address: string, type: string) {
