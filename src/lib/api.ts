@@ -1,5 +1,5 @@
 
-const API_URL = 'https://api.beta.gameservertracker.io';
+const API_URL = 'https://api.gameservertracker.io';
 
 const serverTypes: Record<string, string> = {
     "mc": "minecraft",
